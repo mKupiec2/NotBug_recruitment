@@ -12,6 +12,8 @@ import { RouterModule } from '@angular/router';
 export class PokemonListComponent {
   pokemonList: any[] = []
   loading: boolean = true
+  current_page: number = 1
+  offset_amount: number = 20
 
   constructor(private pokemonService: PokemonService) {}
 
@@ -26,5 +28,25 @@ export class PokemonListComponent {
         this.loading = false
       }
     })
+  }
+
+  private updateList(): void {
+    this.pokemonService.getPokemonList((this.current_page - 1) * this.offset_amount).subscribe({
+      next: (data) => {
+        this.pokemonList = data.results
+        this.loading = false
+      },
+      error: (error) => {
+        console.error("Error fetching from the API: ", error)
+        this.loading = false
+      }
+    })
+  }
+
+  public movePage(amount: number): void {
+    if (!(amount < 0 && this.current_page <= 1) || (this.current_page >= 66 && amount > 0)) { 
+      this.current_page += amount
+      this.updateList()
+    }
   }
 }

@@ -1,5 +1,4 @@
 import { CommonModule } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PokemonService } from '../pokemon.service';
@@ -14,7 +13,7 @@ export class PokemonDetailComponent {
   selected_pokemon: any = null
   loading: boolean = true
 
-  constructor(private route: ActivatedRoute, private http: HttpClient, private pokemonService: PokemonService) {}
+  constructor(private route: ActivatedRoute, private pokemonService: PokemonService) {}
 
   ngOnInit(): void {
     const pokemon_name = this.route.snapshot.paramMap.get("name")

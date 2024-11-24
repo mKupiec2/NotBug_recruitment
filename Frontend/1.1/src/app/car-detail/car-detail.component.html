@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="mt-3 card">
+    <div class="card-body">
+      <h4>Add a new part to selected car</h4>
+      <form (ngSubmit)="addPart()">
+        <div class="mb-3">
+          <label for="name" class="form-label">Name</label>
+          <input type="text" class="form-control" [(ngModel)]="name" name="name" id="name" required>
+        </div>
+        <div class="mb-3">
+          <label for="cost" class="form-label">Cost</label>
+          <input type="number" class="form-control" [(ngModel)]="cost" name="cost" id="cost" required>
+        </div>
+        <div class="text-end">
+          <button type="submit" class="btn btn-primary">Add</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="mt-3 card">
+    <div class="card-body">
+      <h4>Selected car:</h4>
+      <p><b>Make: </b>{{ selected_car.make }}</p>
+      <p><b>Model: </b>{{ selected_car.model }}</p>
+      <p><b>Year: </b>{{ selected_car.year }}</p>
+      <p class="mb-0"><b>Parts: </b></p>
+      <p *ngIf="selected_car.parts.length == 0">None</p>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item" *ngFor="let part of selected_car.parts"><b>Name: </b>{{part.name}}, <b>Cost: </b>{{part.cost}}</li>
+      </ul>
+    </div>
+  </div>
+</div>

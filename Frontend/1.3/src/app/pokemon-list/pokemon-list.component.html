@@ -5,4 +5,19 @@
       {{ pokemon.name }}
     </a>
   </ul>
+  <div class="d-flex justify-content-end">
+    <nav class='mt-3'>
+      <ul class="pagination">
+        <li class="page-item">
+          <a class="page-link" href="#" (click)="movePage(-1)" [ngClass]="{disabled: current_page <= 1}">Previous</a>
+        </li>
+        <li class="page-item disabled" aria-current="page">
+          <a class="page-link" href="#">{{current_page}}</a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" href="#" (click)="movePage(1)" [ngClass]="{disabled: current_page >= 66}">Next</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
 </div>
