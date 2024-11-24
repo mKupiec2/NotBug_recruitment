@@ -1,0 +1,8 @@
+<div *ngIf="loading">Fetching data...</div>
+<div class="container mt-2">
+  <ul *ngIf="!loading" class="list-group">
+    <a *ngFor="let pokemon of pokemonList" class="list-group-item list-group-item-action" [routerLink]="['/details', pokemon.name]">
+      {{ pokemon.name }}
+    </a>
+  </ul>
+</div>

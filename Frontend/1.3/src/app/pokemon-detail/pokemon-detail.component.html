@@ -1,0 +1,47 @@
+<div class="container mt-2">
+  <h3>Name: {{ selected_pokemon.name }}</h3>
+  <p>Id: {{ selected_pokemon.id }}</p>
+  <p>Base experience: {{ selected_pokemon.base_experience }}</p>
+  <p>Height: {{ selected_pokemon.base_experience }}</p>
+  <p>Is default? {{ selected_pokemon.is_default }}</p>
+  <p>Order: {{ selected_pokemon.order }}</p>
+  <p>Weight: {{ selected_pokemon.weight }}</p>
+  <p>Abilities:</p>
+  <p *ngIf="selected_pokemon.abilities.length == 0" class="ms-3">None</p>
+  <p class="ms-3" *ngFor="let ability of selected_pokemon.abilities">Slot - {{ability.slot}}: {{ability.ability.name}}, hidden? {{ability.is_hidden}}</p>
+  <p>Forms:</p>
+  <p class="ms-3" *ngFor="let form of selected_pokemon.forms">{{form.name}}</p>
+  <p *ngIf="selected_pokemon.forms.length == 0" class="ms-3">None</p>
+  <p>Game indices:</p>
+  <p *ngIf="selected_pokemon.game_indices.length == 0" class="ms-3">None</p>
+  <!-- <p class="ms-3" *ngFor="let game of selected_pokemon.game_indices">{{game.game_index}} - {{game.version.name}}</p> -->
+  <p class="ms-3">{{selected_pokemon.game_indices | json}}</p>
+  <p>Held items:</p>
+  <p *ngIf="selected_pokemon.held_items.length == 0" class="ms-3">None</p>
+  <p class="ms-3" *ngFor="let item of selected_pokemon.held_items">{{item.item.name}}</p>
+  <p>Moves:</p>
+  <p *ngIf="selected_pokemon.moves.length == 0" class="ms-3">None</p>
+  <p class="ms-3" *ngFor="let move of selected_pokemon.moves">{{move.move.name}}</p>
+  <p>Species: {{selected_pokemon.species.name}}</p>
+  <p>Sprites:</p>
+  <div class="ms-3" *ngFor="let sprite of selected_pokemon.sprites | keyvalue"> 
+    {{sprite.key}} <img *ngIf="sprite.key != 'other' && sprite.key != 'versions' " src="{{sprite.value}}"/>
+    <div *ngIf="sprite.key == 'other' || sprite.key == 'versions'">
+      <p>{{sprite.value | json}}</p>
+    </div>
+  </div>
+  <p>Cries:</p>
+  <p class="ms-3" *ngFor="let cry of selected_pokemon.cries | keyvalue">{{cry.key}} - {{cry.value}}</p>
+  <p>Stats:</p>
+  <p *ngIf="selected_pokemon.stats.length == 0" class="ms-3">None</p>
+  <p class="ms-3" *ngFor="let stat of selected_pokemon.stats">Base stat: {{stat.base_stat}}, Effort: {{stat.effort}}, Name: {{stat.stat.name}}</p>
+  <p>Types:</p>
+  <p *ngIf="selected_pokemon.types.length == 0" class="ms-3">None</p>
+  <p class="ms-3" *ngFor="let type of selected_pokemon.types">Slot {{type.slot}} - {{type.type.name}}</p>
+  <p>Past types:</p>
+  <p *ngIf="selected_pokemon.past_types.length == 0" class="ms-3">None</p>
+  <div class="ms-3" *ngFor="let type of selected_pokemon.past_types">
+    <p>{{type.generation.name}}</p>
+    <p class="ms-3" *ngFor="let past_type of type.types">Slot {{past_type.slot}} - {{past_type.type.name}}</p>
+  </div>
+</div>
